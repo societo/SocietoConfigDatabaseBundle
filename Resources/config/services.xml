@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="societo.config.database.routing_loader.class">Societo\Config\DatabaseBundle\Routing\Loader\DatabaseLoader</parameter>
+    </parameters>
+
+    <services>
+        <service id="societo.config.database.routing_loader" class="%societo.config.database.routing_loader.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <tag name="routing.loader" />
+        </service>
+
+        <service id="societo.config.database.config_cache_clear_subscriber" class="Societo\Config\DatabaseBundle\ConfigCacheClearSubscriber">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_subscriber" />
+        </service>
+    </services>
+</container>
