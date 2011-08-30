@@ -50,7 +50,7 @@ class DatabaseResource implements ResourceInterface
     public function getValue()
     {
         try {
-            $value = $this->getConnection()->fetchColumn('SELECT value FROM Config WHERE name = ?', array($this->getResourceName()));
+            $value = $this->getConnection()->fetchColumn('SELECT value FROM config WHERE name = ?', array($this->getResourceName()));
         } catch (\Exception $e) {
             return null;
         }
@@ -60,7 +60,7 @@ class DatabaseResource implements ResourceInterface
 
     public function getUpdatedAt()
     {
-        return $this->getConnection()->fetchColumn('SELECT updated_at FROM Config WHERE name = ?', array($this->getResourceName()));
+        return $this->getConnection()->fetchColumn('SELECT updated_at FROM config WHERE name = ?', array($this->getResourceName()));
     }
 
     public function isFresh($timestamp)
